@@ -8,25 +8,25 @@
 #property link      "http://en.louis-fradin.net/"
 #property version   "1.00"
 
-#include "UnitTestCollection.mqh"
+#include "../UnitTest-Library.mqh"
 
 //+------------------------------------------------------------------+
 //| Script program start function                                    |
 //+------------------------------------------------------------------+
 
 void OnStart(){
-   CUnitTestCollection utCollection();
+   CUnitTestsCollection utCollection();
 
-   utCollection.AddUnitTest(TestFail());
-   utCollection.AddUnitTest(TestSuccess());
+   utCollection.AddUnitTests(TestFail());
+   utCollection.AddUnitTests(TestSuccess());
 }
 
 //+------------------------------------------------------------------+
-//| Test Fail
+//| Failed Unit Tests
 //+------------------------------------------------------------------+
 
-CUnitTest* TestFail(){
-   CUnitTest* ut = new CUnitTest("TestFail");
+CUnitTests* TestFail(){
+   CUnitTests* ut = new CUnitTests("TestFail");
 
    // Verification of a true
    ut.IsFalse(__FILE__, __LINE__, true);
@@ -40,8 +40,8 @@ CUnitTest* TestFail(){
 //| Test of the false
 //+------------------------------------------------------------------+
 
-CUnitTest* TestSuccess(){
-   CUnitTest* ut = new CUnitTest("TestSuccess");
+CUnitTests* TestSuccess(){
+   CUnitTests* ut = new CUnitTests("TestSuccess");
 
    // Verification of a true
    ut.IsFalse(__FILE__, __LINE__, false);

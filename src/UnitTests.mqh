@@ -16,7 +16,7 @@
 //| Prototype
 //+------------------------------------------------------------------+
 
-class CUnitTest: public CObject{
+class CUnitTests: public CObject{
    private:
       string m_name;
       CList m_failedTestsList;
@@ -24,8 +24,8 @@ class CUnitTest: public CObject{
       void AddFailedTest(string file, int line, string message);
 
    public:
-      CUnitTest(string testName);
-      ~CUnitTest();
+      CUnitTests(string testName);
+      ~CUnitTests();
       
       // Tests
       bool IsTrue(string file, int line, bool result);
@@ -48,7 +48,7 @@ class CUnitTest: public CObject{
 //| Constructor
 //+------------------------------------------------------------------+
 
-CUnitTest::CUnitTest(string testName){
+CUnitTests::CUnitTests(string testName){
    m_name = testName;
    Print(" => "+m_name);
 }
@@ -57,7 +57,7 @@ CUnitTest::CUnitTest(string testName){
 //| Destructor
 //+------------------------------------------------------------------+
 
-CUnitTest::~CUnitTest(){
+CUnitTests::~CUnitTests(){
    m_failedTestsList.Clear();
 }
 
@@ -65,7 +65,7 @@ CUnitTest::~CUnitTest(){
 //| Add a Failed Test to the intern list of failed tests
 //+------------------------------------------------------------------+
 
-void CUnitTest::AddFailedTest(string file, int line, string message){
+void CUnitTests::AddFailedTest(string file, int line, string message){
    CFailedUnitTest *newFailedTest = new CFailedUnitTest(file,line);  
    
    // Add informations
@@ -80,7 +80,7 @@ void CUnitTest::AddFailedTest(string file, int line, string message){
 //| @param result Boolean to compare
 //+------------------------------------------------------------------+
 
-bool CUnitTest::IsTrue(string file, int line, bool result){
+bool CUnitTests::IsTrue(string file, int line, bool result){
    if(result!=true){
       this.AddFailedTest(file, line, "isTrue(False)");
       return false;
@@ -94,7 +94,7 @@ bool CUnitTest::IsTrue(string file, int line, bool result){
 //| @param result Boolean to compare
 //+------------------------------------------------------------------+
 
-bool CUnitTest::IsFalse(string file, int line, bool result){
+bool CUnitTests::IsFalse(string file, int line, bool result){
    if(result!=false){
       this.AddFailedTest(file, line, "isFalse(True)");
       return false;
@@ -109,7 +109,7 @@ bool CUnitTest::IsFalse(string file, int line, bool result){
 //| @param stringB Second string to compare
 //+------------------------------------------------------------------+
 
-bool CUnitTest::IsEquals(string file, int line, string stringA,string stringB){
+bool CUnitTests::IsEquals(string file, int line, string stringA,string stringB){
    if(stringA!=stringB){ // If strings are differents
       string message = "IsEquals('"+stringA+"','"+stringB+"')";
       this.AddFailedTest(file, line, message); // Add a fail test
@@ -125,7 +125,7 @@ bool CUnitTest::IsEquals(string file, int line, string stringA,string stringB){
 //| @param nbrB Second int to compare
 //+------------------------------------------------------------------+
 
-bool CUnitTest::IsEquals(string file, int line, int nbrA, int nbrB){
+bool CUnitTests::IsEquals(string file, int line, int nbrA, int nbrB){
    if(nbrA!=nbrB){ // If strings are differents
       string message = "IsEquals("+IntegerToString(nbrA)+","+IntegerToString(nbrB)+")";
       this.AddFailedTest(file, line, message); // Add a fail test
@@ -141,7 +141,7 @@ bool CUnitTest::IsEquals(string file, int line, int nbrA, int nbrB){
 //| @param nbrB Second double to compare
 //+------------------------------------------------------------------+
 
-bool CUnitTest::IsEquals(string file, int line, double nbrA, double nbrB){
+bool CUnitTests::IsEquals(string file, int line, double nbrA, double nbrB){
    if(nbrA!=nbrB){ // If strings are differents
       string message = "IsEquals("+DoubleToString(nbrA)+","+DoubleToString(nbrB)+")";
       this.AddFailedTest(file, line, message); // Add a fail test
@@ -157,7 +157,7 @@ bool CUnitTest::IsEquals(string file, int line, double nbrA, double nbrB){
 //| @param nbrB Second double to compare
 //+------------------------------------------------------------------+
 
-bool CUnitTest::IsNotEquals(string file, int line, double nbrA, double nbrB){
+bool CUnitTests::IsNotEquals(string file, int line, double nbrA, double nbrB){
    if(nbrA==nbrB){ // If strings are differents
       string message = "IsNotEquals("+DoubleToString(nbrA)+","+DoubleToString(nbrB)+")";
       this.AddFailedTest(file, line, message); // Add a fail test
@@ -173,7 +173,7 @@ bool CUnitTest::IsNotEquals(string file, int line, double nbrA, double nbrB){
 //| @param reality What really happen
 //+------------------------------------------------------------------+
 
-void CUnitTest::SetFalse(string file, int line, string message){
+void CUnitTests::SetFalse(string file, int line, string message){
    this.AddFailedTest(file, line, message); // Add a fail test
 }
 
@@ -182,7 +182,7 @@ void CUnitTest::SetFalse(string file, int line, string message){
 //| @return The failed if a test exists at this position, NULL otherwise
 //+------------------------------------------------------------------+
 
-CFailedUnitTest* CUnitTest::GetFailedTest(int position){
+CFailedUnitTest* CUnitTests::GetFailedTest(int position){
    return m_failedTestsList.GetNodeAtIndex(position);
 }
 
@@ -191,7 +191,7 @@ CFailedUnitTest* CUnitTest::GetFailedTest(int position){
 //| @return The total of failed tests
 //+------------------------------------------------------------------+
 
-int CUnitTest::TotalFailedTests(void){
+int CUnitTests::TotalFailedTests(void){
    return m_failedTestsList.Total();
 }
 
@@ -200,7 +200,7 @@ int CUnitTest::TotalFailedTests(void){
 //| @return The unit test name
 //+------------------------------------------------------------------+
 
-string CUnitTest::GetName(){
+string CUnitTests::GetName(){
    return m_name;
 }
 

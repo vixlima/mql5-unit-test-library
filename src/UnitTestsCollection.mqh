@@ -9,29 +9,29 @@
 
 #include <Object.mqh>
 #include <Arrays\List.mqh>
-#include "UnitTest.mqh"
+#include "UnitTests.mqh"
 
 //+------------------------------------------------------------------+
 //| Prototype
 //+------------------------------------------------------------------+
 
-class CUnitTestCollection: public CObject{
+class CUnitTestsCollection: public CObject{
    private:
       CList m_unitTestsList;
       
       void DisplayFailedTests();
    public:
-      void AddUnitTest(CUnitTest *ut);
+      void AddUnitTests(CUnitTests *ut);
 
-      CUnitTestCollection();
-      ~CUnitTestCollection();
+      CUnitTestsCollection();
+      ~CUnitTestsCollection();
 };
 
 //+------------------------------------------------------------------+
 //| Constructor
 //+------------------------------------------------------------------+
 
-CUnitTestCollection::CUnitTestCollection(){
+CUnitTestsCollection::CUnitTestsCollection(){
    Print(" --- Unit Tests beginning -------------------------------");
 }
 
@@ -39,7 +39,7 @@ CUnitTestCollection::CUnitTestCollection(){
 //| Destructor
 //+------------------------------------------------------------------+
 
-CUnitTestCollection::~CUnitTestCollection(){
+CUnitTestsCollection::~CUnitTestsCollection(){
    Print(" --- Unit Tests end -------------------------------------");
    DisplayFailedTests();
    
@@ -51,9 +51,9 @@ CUnitTestCollection::~CUnitTestCollection(){
 //| Display failed test of the unit tests added
 //+------------------------------------------------------------------+
 
-CUnitTestCollection::DisplayFailedTests(){
+CUnitTestsCollection::DisplayFailedTests(){
    CFailedUnitTest *failedTest;
-   CUnitTest *unitTest  = m_unitTestsList.GetFirstNode();
+   CUnitTests *unitTest  = m_unitTestsList.GetFirstNode();
    int nbrOfUnitTests = m_unitTestsList.Total();
    int total;
    string summary;
@@ -87,7 +87,7 @@ CUnitTestCollection::DisplayFailedTests(){
 //| @param ut The unit test to add
 //+------------------------------------------------------------------+
 
-void CUnitTestCollection::AddUnitTest(CUnitTest *ut){
+void CUnitTestsCollection::AddUnitTests(CUnitTests *ut){
    m_unitTestsList.Add(ut);
 }
 
